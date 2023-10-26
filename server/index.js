@@ -27,9 +27,7 @@ app.use(cors({
 //Middleware
 app.get(express.json())
 //connect to database mongodb
-app.get("/",(req,res)=>{
-  res.send("i am working")
-})
+
 // mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority")
 // .then(()=>console.log("connection sucessfully to mongodb"))
 // .catch(()=>console.log("connection failed"))
