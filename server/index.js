@@ -474,7 +474,7 @@ mongoose.connect(urlmongo, { useNewUrlParser: true, useUnifiedTopology: true })
   });
 
 
-app.listen(process.env.VITE_BACK_PORT_URL,()=>{
-    console.log("the server is runing on port 3000");
+app.listen(process.env.VITE_BACK_PORT_URL,(req,res)=>{
+    res.send(`the server runing on ${process.env.VITE_BACK_PORT_URL}`)
 })
 
