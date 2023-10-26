@@ -34,6 +34,8 @@ const Schema = mongoose.Schema(
         type:Date,
         default : Date.now(),
      }
+    },{
+        timestamps: true
     }
     )
-module.exports =Project= mongoose.model("projects",Schema);
+module.exports = mongoose.model("projects",Schema);

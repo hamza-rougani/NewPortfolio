@@ -5,5 +5,7 @@ const NewsPostSchema = mongoose.Schema({
         type:Date,
         default:Date.now(),
     }
+},{
+    timestamps: true
 })
-module.exports =NewsPost= mongoose.model("NewsPost",NewsPostSchema)
+module.exports = mongoose.model("NewsPost",NewsPostSchema)

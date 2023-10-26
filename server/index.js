@@ -1,14 +1,9 @@
 const express=  require("express");
-const Project=  require("./Model/Projects.js")
 const multer=  require("multer")
 const path = require("path")
-const User=  require("./Model/Admin.js")
 const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
-const NewsPost=  require("./Model/NewsPost.js");
-const NewsProject=  require("./Model/NewsProject.js");
-
 require('dotenv').config();
 const Url=process.env.VITE_LOCAL_SERVER
 const Port=process.env.VITE_API_PORT_URL
@@ -38,7 +33,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const connectDB = require('./connectMongo')
 const Post=  require("./Model/Post.model.js")
-
+const NewsPost=  require("./Model/NewsPost.model.js");
+const NewsProject=  require("./Model/NewsProject.model.js");
+const User=  require("./Model/Admin.model.js")
+const Project=  require("./Model/Projects.model.js")
 connectDB()
   app.get("/project",async(req,res)=>{
     try{

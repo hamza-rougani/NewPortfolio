@@ -4,6 +4,8 @@ const ShcemaAdmin = mongoose.Schema({
     username:String,
     password:String,
     isAdmin:Boolean,
+},{
+    timestamps: true
 })
 
-module.exports =User= mongoose.model("admin",ShcemaAdmin)
+module.exports = mongoose.model("admin",ShcemaAdmin)
