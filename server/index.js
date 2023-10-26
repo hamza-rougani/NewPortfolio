@@ -27,7 +27,9 @@ app.use(cors({
 //Middleware
 app.get(express.json())
 //connect to database mongodb
-
+app.get("/",(req,res)=>{
+  res.send("i am working")
+})
 // mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority")
 // .then(()=>console.log("connection sucessfully to mongodb"))
 // .catch(()=>console.log("connection failed"))
@@ -473,6 +475,6 @@ mongoose.connect(urlmongo, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.listen(process.env.VITE_BACK_PORT_URL,(req,res)=>{
-    res.send(`the server runing on ${process.env.VITE_BACK_PORT_URL}`)
+    console.log("the server is runing on port 3000");
 })
 
