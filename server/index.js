@@ -247,7 +247,7 @@ const upload = multer({ storage });
   
   })
   //get posts
-  app.get("/posts",async(req,res)=>{
+  app.get("/api/v1/posts",async(req,res)=>{
     try{
   const posts =await Post.find().sort({"_id":-1});
   res.status(200).json({data:posts})
