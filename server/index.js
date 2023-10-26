@@ -248,6 +248,16 @@ const upload = multer({ storage });
   })
   //get posts
   app.get("/api/v1/posts",async(req,res)=>{
+    const { limit = 5, orderBy = 'name', sortBy = 'asc', keyword } = req.query
+    let page = +req.query?.page
+
+    if (!page || page <= 0) page = 1
+
+    const skip = (page - 1) * +limit
+
+    const query = {}
+
+    if (keyword) query.name = { "$regex": keyword, "$options": "i" }
     try{
   const posts =await Post.find().sort({"_id":-1});
   res.status(200).json({data:posts})
