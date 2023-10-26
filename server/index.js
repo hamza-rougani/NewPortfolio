@@ -5,14 +5,11 @@ const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
 require('dotenv').config();
-const Url=process.env.VITE_LOCAL_SERVER
-const Port=process.env.VITE_API_PORT_URL
-
 const app = express();
 // const the cors middleware
 const cors = require("cors")
 app.use(cors({
-    origin: `${Url}:${Port}`, // Replace with the actual origin of your client app
+    origin: `${process.env.VITE_LOCAL_SERVER}`, // Replace with the actual origin of your client app
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
