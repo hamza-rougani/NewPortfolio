@@ -9,23 +9,25 @@ const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
 const NewsPost=  require("./Model/NewsPost.js");
 const NewsProject=  require("./Model/NewsProject.js");
-const connectDB = require('./connectMongo')
+
 
 require('dotenv').config();
 const Url=process.env.VITE_LOCAL_SERVER
 const Port=process.env.VITE_API_PORT_URL
 
 const app = express();
+app.get(express.json())
 // const the cors middleware
-const cors = require("cors")
-app.use(cors({
-    origin: `${Url}:${Port}`, // Replace with the actual origin of your client app
-    methods: 'GET,POST,PUT,DELETE',
-    // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
-  }));
+// const cors = require("cors")
+// app.use(cors({
+//     origin: `${Url}:${Port}`, // Replace with the actual origin of your client app
+//     methods: 'GET,POST,PUT,DELETE',
+//     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
+//   }));
+const connectDB = require('./connectMongo')
   connectDB()
 //Middleware
-app.get(express.json())
+const Post=  require("./Model/Post.js")
 //connect to database mongodb
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -248,16 +250,7 @@ const upload = multer({ storage });
   })
   //get posts
   app.get("/api/v1/posts",async(req,res)=>{
-    const { limit = 5, orderBy = 'name', sortBy = 'asc', keyword } = req.query
-    let page = +req.query?.page
-
-    if (!page || page <= 0) page = 1
-
-    const skip = (page - 1) * +limit
-
-    const query = {}
-
-    if (keyword) query.name = { "$regex": keyword, "$options": "i" }
+    
     try{
   const posts =await Post.find().sort({"_id":-1});
   res.status(200).json({data:posts})
