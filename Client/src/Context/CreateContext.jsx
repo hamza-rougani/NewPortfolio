@@ -1,0 +1,31 @@
+import React,{createContext} from 'react'
+const CreateContext = createContext({
+    introduct:null,
+    overview:null,
+    problem:null,
+    solution:null,
+    diagrams:null,
+    ImagesD:null,
+    ImagesR:null,
+    Image:null,
+    realization:null,
+    notification:null,
+    token:null,
+    NewsPost:null,
+    NewsProject:null,
+    setToken:()=>{},
+    setintroduct:()=>{},
+    setoverview:()=>{},
+    setproblem:()=>{},
+    setsolution:()=>{},
+    setdiagrams:()=>{},
+    setrealization:()=>{},
+    setnotification:()=>{},
+    setImagesD:()=>{},
+    setImagesR:()=>{},
+    setImage:()=>{},
+    setNewsPost:()=>{},
+    setNewsProject:()=>{},
+})
+
+export default CreateContext
