@@ -1,6 +1,4 @@
 const express=  require("express");
-const mongoose =  require("mongoose");
-const { MongoClient } = require('mongodb');
 const Project=  require("./Model/Projects.js")
 const multer=  require("multer")
 const path = require("path")
@@ -11,6 +9,8 @@ const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
 const NewsPost=  require("./Model/NewsPost.js");
 const NewsProject=  require("./Model/NewsProject.js");
+const connectDB = require('./connectMongo')
+
 require('dotenv').config();
 const Url=process.env.VITE_LOCAL_SERVER
 const Port=process.env.VITE_API_PORT_URL
@@ -23,7 +23,7 @@ app.use(cors({
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
-
+  connectDB()
 //Middleware
 app.get(express.json())
 //connect to database mongodb
@@ -38,10 +38,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-// mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority")
-// .then(()=>console.log("connection sucessfully to mongodb"))
-// .catch(()=>console.log("connection failed"))
-  //get Project
+
   app.get("/project",async(req,res)=>{
     try{
     const projects =await Project.find().sort({"_id":-1})
@@ -51,20 +48,6 @@ const upload = multer({ storage });
       res.status(400).json({err:err})
     }
     })
-const urlmongo = process.env.VITE_MONGODB; // Replace with your MongoDB server connection string
-mongoose.set("strictQuery",true);
-mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.get("/",(req,res)=>{
-      res.send("i am working")
-    })
-    // You are now connected to the MongoDB server
-   
-  
-  
-  
-
   //show Project
   app.get("/show/:id",async(req,res)=>{
     const objectId  = req.params.id
@@ -470,10 +453,7 @@ mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mong
   })
   
   app.use('/uploads', express.static('uploads'));
-  })
-  .catch(err => {
-    console.error('Error connecting to MongoDB:', err);
-  });
+  
 
 
 app.listen(process.env.VITE_BACK_PORT_URL,(req,res)=>{
