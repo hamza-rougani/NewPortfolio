@@ -33,7 +33,7 @@ app.get(express.json())
 // .catch(()=>console.log("connection failed"))
 const urlmongo = process.env.VITE_MONGODB; // Replace with your MongoDB server connection string
 mongoose.set("strictQuery",true);
-mongoose.connect(urlmongo, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
     app.get("/",(req,res)=>{
