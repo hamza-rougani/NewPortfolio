@@ -27,10 +27,30 @@ app.use(cors({
 //Middleware
 app.get(express.json())
 //connect to database mongodb
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    const extname = path.extname(file.originalname);
+    cb(null,file.fieldname+"-"+Date.now() + extname);
+  },
+});
 
+const upload = multer({ storage });
 // mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority")
 // .then(()=>console.log("connection sucessfully to mongodb"))
 // .catch(()=>console.log("connection failed"))
+  //get Project
+  app.get("/project",async(req,res)=>{
+    try{
+    const projects =await Project.find().sort({"_id":-1})
+    res.status(200).json({data:projects})
+    }
+    catch(err){
+      res.status(400).json({err:err})
+    }
+    })
 const urlmongo = process.env.VITE_MONGODB; // Replace with your MongoDB server connection string
 mongoose.set("strictQuery",true);
 mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -40,30 +60,11 @@ mongoose.connect("mongodb+srv://Portfolio:zQto5FWhSv1BcBQ8@cluster0.9vyuq1d.mong
       res.send("i am working")
     })
     // You are now connected to the MongoDB server
-    const storage = multer.diskStorage({
-      destination: (req, file, cb) => {
-        cb(null, "./uploads");
-      },
-      filename: (req, file, cb) => {
-        const extname = path.extname(file.originalname);
-        cb(null,file.fieldname+"-"+Date.now() + extname);
-      },
-    });
-    
-    const upload = multer({ storage });
+   
   
   
   
-  //get Project
-  app.get("/project",async(req,res)=>{
-  try{
-  const projects =await Project.find().sort({"_id":-1})
-  res.status(200).json({data:projects})
-  }
-  catch(err){
-    res.status(400).json({err:err})
-  }
-  })
+
   //show Project
   app.get("/show/:id",async(req,res)=>{
     const objectId  = req.params.id
