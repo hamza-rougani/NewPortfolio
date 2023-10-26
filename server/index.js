@@ -2,7 +2,6 @@ const express=  require("express");
 const Project=  require("./Model/Projects.js")
 const multer=  require("multer")
 const path = require("path")
-const Post=  require("./Model/Post.js")
 const User=  require("./Model/Admin.js")
 const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -10,24 +9,21 @@ const isAthenticated = require("./Auth/auth.js")
 const NewsPost=  require("./Model/NewsPost.js");
 const NewsProject=  require("./Model/NewsProject.js");
 
-
 require('dotenv').config();
 const Url=process.env.VITE_LOCAL_SERVER
 const Port=process.env.VITE_API_PORT_URL
 
 const app = express();
-app.get(express.json())
 // const the cors middleware
-// const cors = require("cors")
-// app.use(cors({
-//     origin: `${Url}:${Port}`, // Replace with the actual origin of your client app
-//     methods: 'GET,POST,PUT,DELETE',
-//     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
-//   }));
-const connectDB = require('./connectMongo')
-  connectDB()
+const cors = require("cors")
+app.use(cors({
+    origin: `${Url}:${Port}`, // Replace with the actual origin of your client app
+    methods: 'GET,POST,PUT,DELETE',
+    // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
+  }));
+
 //Middleware
-const Post=  require("./Model/Post.js")
+app.get(express.json())
 //connect to database mongodb
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -40,7 +36,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+const connectDB = require('./connectMongo')
+const Post=  require("./Model/Post.model.js")
 
+connectDB()
   app.get("/project",async(req,res)=>{
     try{
     const projects =await Project.find().sort({"_id":-1})
@@ -249,8 +248,7 @@ const upload = multer({ storage });
   
   })
   //get posts
-  app.get("/api/v1/posts",async(req,res)=>{
-    
+  app.get("/posts",async(req,res)=>{
     try{
   const posts =await Post.find().sort({"_id":-1});
   res.status(200).json({data:posts})
