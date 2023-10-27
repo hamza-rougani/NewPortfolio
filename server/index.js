@@ -3,7 +3,6 @@ const multer=  require("multer")
 const path = require("path")
 const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
-const serverless = require('serverless-http');
 const isAthenticated = require("./Auth/auth.js")
 require('dotenv').config();
 const router = express.Router();
@@ -15,7 +14,8 @@ app.use(cors({
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
-
+  router.use('/uploads', express.static('uploads'));
+  app.use('/api', router);
 //Middleware
 app.get(express.json())
 //connect to database mongodb
@@ -451,12 +451,9 @@ connectDB()
   })
   
   // app.use('/uploads', express.static('uploads'));
-  router.use('/uploads', express.static('uploads'));
-  app.use('/api', router);
+
   
-// Convert the Express app into a serverless function
-module.exports = app;
-module.exports.handler = serverless(app);
+
 
 app.listen(process.env.VITE_BACK_PORT_URL,(req,res)=>{
     console.log("the server is runing on port 3000");
