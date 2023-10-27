@@ -8,7 +8,7 @@ function Posts() {
   const [loading,setLoading] = useState(false)
   useEffect(()=>{
     setLoading(false)
-    axios.get(`https://new-portfolio-henna-chi.vercel.app/posts`)
+    axios.get(`${import.meta.env.VITE_BACK_BASE_URL}/posts`)
     .then(({data})=>{
       setPost(data.data)
       setLoading(true)
