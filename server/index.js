@@ -5,19 +5,17 @@ const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
 require('dotenv').config();
-const router = express.Router();
 const app = express();
 // const the cors middleware
 const cors = require("cors")
 app.use(cors({
-    origin: `http://localhost:5173`, // Replace with the actual origin of your client app
+    origin: `${process.env.VITE_LOCAL_SERVER}`, // Replace with the actual origin of your client app
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
-  router.use('/uploads', express.static('uploads'));
-  app.use('/api', router);
 //Middleware
 app.get(express.json())
+ 
 //connect to database mongodb
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -450,8 +448,8 @@ connectDB()
     }
   })
   
-  // app.use('/uploads', express.static('uploads'));
 
+  app.use('/uploads', express.static('uploads'));
   
 
 
