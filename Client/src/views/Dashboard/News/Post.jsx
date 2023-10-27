@@ -24,12 +24,12 @@ function Post(e) {
            {e.p.post.length>400 ? <button onClick={()=>handelSee(e.index)}> {display?"See more":"See less"}</button>:""} 
         </p>
         <div className='img'>
-            <img src={`${import.meta.env.VITE_API2_BASE_URL}/${e.p.image}`} alt="" />
+            <img src={`${import.meta.env.VITE_API2_BASE_URL}/api/${e.p.image}`} alt="" />
             {console.log(e.p.image)}
         </div>
         <div className='time'>
-            <span>{e.p.create_at.split("T")[1].split(".")[0]}</span>
-            <span>{e.p.create_at.split("T")[0]}</span>
+            <span>{e.p.create_at ? e.p.create_at.split("T")[1].split(".")[0]:""}</span>
+            <span>{e.p.create_at ? e.p.create_at.split("T")[0]:""}</span>
         </div>
     </div>
 
