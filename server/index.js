@@ -9,7 +9,7 @@ const app = express();
 // const the cors middleware
 const cors = require("cors")
 app.use(cors({
-    origin: `${process.env.VITE_LOCAL_SERVER}`, // Replace with the actual origin of your client app
+    origin: `https://new-portfolio-dlsj.vercel.app`, // Replace with the actual origin of your client app
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
