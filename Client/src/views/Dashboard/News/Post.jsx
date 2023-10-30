@@ -24,7 +24,7 @@ function Post(e) {
            {e.p.post.length>400 ? <button onClick={()=>handelSee(e.index)}> {display?"See more":"See less"}</button>:""} 
         </p>
         <div className='img'>
-            <img src={`${import.meta.env.VITE_BACK_BASE_URL}/${e.p.image}`} alt="" />
+            <img src={`${e.p.image}`} alt="" />
             {console.log(e.p.image)}
         </div>
         <div className='time'>

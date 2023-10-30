@@ -30,7 +30,7 @@ export default function App(e) {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {image && image.length>0 ? image.map((img,index)=><SwiperSlide key={index}><img src={typeof(img)=="string"?`${import.meta.env.VITE_API2_BASE_URL}/${img}`:img._id?`${import.meta.env.VITE_API2_BASE_URL}/${img.NewsProjectImage?img.NewsProjectImage:img.NewsPostImage}`:URL.createObjectURL(img)}alt="" /></SwiperSlide>):""}
+        {image && image.length>0 ? image.map((img,index)=><SwiperSlide key={index}><img src={typeof(img)=="string"?`$${img}`:img._id?`${img.NewsProjectImage?img.NewsProjectImage:img.NewsPostImage}`:URL.createObjectURL(img)}alt="" /></SwiperSlide>):""}
       </Swiper>
     </>
   );

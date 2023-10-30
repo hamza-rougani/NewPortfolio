@@ -75,7 +75,7 @@ function NewsProject(e) {
               News.map((p,index)=>{
                 return(
                 <tr key={index}>
-                <td><div id='imageG'><img src={e.option=="Project"? `${import.meta.env.VITE_API2_BASE_URL}/${p.NewsProjectImage}`:`${import.meta.env.VITE_BACK_BASE_URL}/${p.NewsPostImage}`} alt="" /></div></td>
+                <td><div id='imageG'><img src={e.option=="Project"? `${p.NewsProjectImage}`:`${p.NewsPostImage}`} alt="" /></div></td>
                 <td>{p.create_at}</td>
                 <td>
                 <button onClick={()=>handelDelete(p._id)}><div id="icons"><img src={`${import.meta.env.VITE_API_BASE_URL}/images/bouton-supprimer.png`} alt="" /></div></button>

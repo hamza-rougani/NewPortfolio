@@ -5,7 +5,7 @@ import { useStateContext } from '../../../../Context/Provider'
 
 function CreatePost() {
   const {id} = useParams()
-  const {token} = useStateContext();
+  const {token,setconvertBase64} = useStateContext();
   // console.log(token)
 const [post,setPost] = useState({post:"",image:""})
 const Navigate = useNavigate()
@@ -25,9 +25,10 @@ var formdata = new FormData()
   ,[])
   // console.log(post)
 
-const handleCreate = ()=>{
+const handleCreate = async()=>{
+const imageBase64 = await setconvertBase64(post.image) 
 formdata.append("post",post.post)
-formdata.append("image",post.image)
+formdata.append("image",imageBase64)
 axios.post(`${import.meta.env.VITE_BACK_BASE_URL}/createpost`, formdata, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -77,7 +78,7 @@ axios.put(`${import.meta.env.VITE_BACK_BASE_URL}/updatepost/${id}`, formdata, {
       {id ?
       <div className='imagePost'>
         <div className='img'>
-          <img src={typeof(post.image)=="string"?`${import.meta.env.VITE_API2_BASE_URL}/${post.image}`:URL.createObjectURL(post.image)} alt="" />
+          <img src={typeof(post.image)=="string"?`${post.image}`:URL.createObjectURL(post.image)} alt="" />
         </div>
       </div>
       :""}

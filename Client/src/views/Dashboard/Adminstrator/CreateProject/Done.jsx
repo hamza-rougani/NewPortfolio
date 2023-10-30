@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 function Done() {
   const {id} = useParams()
   const Navigate = useNavigate()
-  const {token,introduct,overview,problem,solution,diagrams,realization,setnotification,ImagesD,ImagesR,Image} = useStateContext()
+  const {token,introduct,overview,problem,solution,diagrams,realization,setnotification,ImagesD,ImagesR,Image,setconvertBase64} = useStateContext()
   const handleCreate = async(ev)=>{
     const formData = new FormData();
     formData.append("Introduct",JSON.stringify(introduct))
@@ -15,10 +15,8 @@ function Done() {
     formData.append("Solution",JSON.stringify(solution))
     formData.append("Diagrams",JSON.stringify(diagrams))
     formData.append("Realization",JSON.stringify(realization))
-  
-    console.log(ImagesD)
-    
-    formData.append("Image",Image)
+    const convertBase64 =await setconvertBase64(Image)    
+    formData.append("Image",convertBase64)
 var De = []
 var Re = []
 
@@ -56,11 +54,16 @@ var Re = []
               .catch(err=>console.log(err))
       }else if(ev=="create"){
         for(var img of ImagesD){
-          formData.append("ImagesD",img)
+          const conv1 = await setconvertBase64(img)
+          De.push(conv1)
         }
         for(var img of ImagesR){
-          formData.append("ImagesR",img)
+          const conv2 = await setconvertBase64(img)
+          Re.push(conv2)
         }
+       console.log(De)
+        formData.append("ImagesD",JSON.stringify(De))
+        formData.append("ImagesR",JSON.stringify(Re))
         axios.post(`${import.meta.env.VITE_BACK_BASE_URL}/create`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',

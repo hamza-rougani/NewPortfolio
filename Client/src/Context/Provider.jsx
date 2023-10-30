@@ -15,6 +15,25 @@ export const ContextProvider = (props)=>{
     const [NewsPost,_setNewsPost] = useState([])
     const [NewsProject,_setNewsProject] = useState([])
     const [token,_setToken] = useState(localStorage.getItem('TOKEN'));
+    const setconvertBase64 = (file)=>{
+        if(file){
+        return new Promise((resolve,reject)=>{
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload=()=>{
+            resolve(fileReader.result)
+            console.log(fileReader.result)
+          }
+          fileReader.onerror=(error)=>{
+            reject(error)
+            console.log(error)
+          }
+          
+        })
+    }else{
+        return null
+    }
+      }
     const  setToken=(token)=>{
         _setToken(token)
         if(token){
@@ -77,6 +96,7 @@ return(
      token,
      NewsPost,
      NewsProject,
+     setconvertBase64,
      setNewsPost,
      setNewsProject,
      setToken,

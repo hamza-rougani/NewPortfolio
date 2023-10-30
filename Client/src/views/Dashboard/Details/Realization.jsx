@@ -8,7 +8,7 @@ function Realization(e) {
           <div className='diagramsc' key={index}>
             <h4 id='h4p'>{d}</h4>
             <div className='cont'>
-            <div className='img'><img src={`${import.meta.env.VITE_API2_BASE_URL}/${e.p.images[index]}`} alt=""/></div>
+            <div className='img'><img src={`${e.p.images[index]}`} alt=""/></div>
             </div>
             <p id='paragraph'>{e.p.desc[index]}</p>
           </div>

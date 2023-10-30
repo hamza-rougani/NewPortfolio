@@ -4,17 +4,19 @@ const path = require("path")
 const bcrypt=  require("bcrypt")
 const jwt = require("jsonwebtoken")
 const isAthenticated = require("./Auth/auth.js")
+const uploadimage = require("./uploadimage.js")
 require('dotenv').config();
 const app = express();
 // const the cors middleware
+//Middleware
+app.get(express.json())
 const cors = require("cors")
 app.use(cors({
     origin: `${process.env.VITE_LOCAL_SERVER}`, // Replace with the actual origin of your client app
     methods: 'GET,POST,PUT,DELETE',
     // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
-//Middleware
-app.get(express.json())
+
  
 //connect to database mongodb
 const storage = multer.diskStorage({
@@ -27,7 +29,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+
+const upload = multer({ limits: { fieldSize: 25 * 1024 * 1024 } }); // Set a reasonable limit
+
 const connectDB = require('./connectMongo')
 const Post=  require("./Model/Post.model.js")
 const NewsPost=  require("./Model/NewsPost.model.js");
@@ -56,11 +60,7 @@ connectDB()
     }
     })
   //store Project
-  app.post('/create',isAthenticated,upload.fields([
-      { name: 'Image', maxCount: 4 },
-      { name: 'ImagesR', maxCount: 10 },
-      { name: 'ImagesD', maxCount: 10 },
-    ]), async (req, res) => {
+  app.post('/create',isAthenticated,upload.none(), async (req, res) => {
       try {
   
       const Introduct = JSON.parse(req.body.Introduct)
@@ -69,10 +69,21 @@ connectDB()
       const Solution = JSON.parse(req.body.Solution)
       const Diagrams = JSON.parse(req.body.Diagrams)
       const Realization = JSON.parse(req.body.Realization)
-            const introductImage = req.files['Image'][0].path;
-            const RImage = req.files['ImagesR'].map(file=>file.path);
-            const DImage = req.files['ImagesD'].map(file=>file.path);
-      
+            var introductImage;
+            var DImage;
+            var RImage;
+    await  uploadimage(req.body.Image)
+      .then((url)=>{
+         introductImage = url
+      }).catch(err=>console.log(err))
+   await   uploadimage.uploadMultiImages(JSON.parse(req.body.ImagesD))
+      .then((urls)=>{
+        DImage = urls
+      }).catch(err=>console.log(err))
+   await   uploadimage.uploadMultiImages(JSON.parse(req.body.ImagesR))
+      .then((urls)=>{
+        RImage = urls
+      }).catch(err=>console.log(err))
             const projectData = {
       
               Introduct: {
@@ -112,7 +123,7 @@ connectDB()
             // Save the project data to the database
             await project.save();
         
-            res.status(201).json({ body:JSON.parse(req.body.Introduct)});
+            res.status(201).json({ body:project});
      
   
       } catch (error) {
@@ -123,11 +134,7 @@ connectDB()
   
    
   //update Project
-  app.put('/updateproject/:id',isAthenticated,upload.fields([
-    { name: 'Image', maxCount: 1 },
-    { name: 'ImagesR', maxCount: 10 },
-    { name: 'ImagesD', maxCount: 10 },
-  ]), async (req, res) => {
+  app.put('/updateproject/:id',isAthenticated,upload.none(), async (req, res) => {
     try {
     const id = req.params.id.toString()
     const Introduct = JSON.parse(req.body.Introduct)
@@ -227,20 +234,18 @@ connectDB()
   
   // })
   //create post
-  app.post("/createpost",isAthenticated,upload.fields([{name:"image",maxCount:1}]),async(req,res)=>{
-    try{
-    const pathimage = req.files["image"][0].path;
+  app.post("/createpost",isAthenticated,upload.none(),async(req,res)=>{
+  uploadimage(req.body.image)
+  .then((url)=>{
     const CPost = new Post({
-     post:req.body.post,
-     image:pathimage,
-    })
-    await CPost.save()
-    res.status(200).json({path:pathimage})
-  }catch(err){
-    res.status(400).json({err:err})
-  }
-  
-  
+         post:req.body.post,
+         image:url,
+        })
+       CPost.save().then((data)=>res.status(200).json({path:data}))
+       .catch(err=>res.status(400).json({err:err}))
+  })
+  .catch((err)=>res.status(400).json({err:err}))
+ 
   })
   //get posts
   app.get("/posts",async(req,res)=>{
@@ -341,15 +346,17 @@ connectDB()
   });
   
   // post NewsPost
-  app.post("/NewsPost",isAthenticated,upload.fields([{name:"NewsPost"}]),async(req,res)=>{
-    try{
-      const NewsPostPath = req.files["NewsPost"][0].path
-      const NewsPostU =  new NewsPost({NewsPostImage:NewsPostPath})
-      await NewsPostU.save()
-      res.status(200).json({res:"the NewsPost created successfully"})
-    }catch(err){
-      res.status(404).json({err:err.message})
-    }
+  app.post("/NewsPost",isAthenticated,upload.none(),async(req,res)=>{
+    uploadimage(req.body.image)
+    .then((url)=>{
+        const NewsPostU =  new NewsPost({NewsPostImage:url})
+         NewsPostU.save().then(()=> res.status(200).json({res:"the NewsPost created successfully"}))
+         .catch(err=>res.status(404).json({err:err.message}))
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+    
    
   })
   // get NewsPost
@@ -382,7 +389,7 @@ connectDB()
     }
   })
   // delete NewsPost
-  app.put("/NewsPost/:id",isAthenticated,upload.fields([{name:"NewsPost"}]),async(req,res)=>{
+  app.put("/NewsPost/:id",isAthenticated,upload.none(),async(req,res)=>{
     try{
      const id = req.params.id
      const ImageUpdate = req.files["NewsPost"][0].path
@@ -396,16 +403,16 @@ connectDB()
   
   
   // post NewsProject
-  app.post("/NewsProject",isAthenticated,upload.fields([{name:"NewsProject"}]),async(req,res)=>{
-    try{
-      const NewsProjectPathP = req.files["NewsProject"][0].path
-      const NewsProjectU =  new NewsProject({NewsProjectImage:NewsProjectPathP})
-      await NewsProjectU.save()
-      res.status(200).json({res:"the NewsProject created successfully"})
-    }catch(err){
-      res.status(404).json({err:err.message})
-    }
-   
+  app.post("/NewsProject",isAthenticated,upload.none(),async(req,res)=>{
+    uploadimage(req.body.image)
+    .then((url)=>{
+      const NewsProjectU =  new NewsProject({NewsProjectImage:url})
+      NewsProjectU.save().then(()=> res.status(200).json({res:"the NewsProject created successfully"}))
+         .catch(err=>res.status(404).json({err:err.message}))
+    })
+    .catch(err=>{
+        console.log(err)
+    })
   })
   // show NewsProject
   app.get("/NewsProject/:id",async(req,res)=>{

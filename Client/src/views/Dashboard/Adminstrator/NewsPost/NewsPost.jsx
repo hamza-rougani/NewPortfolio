@@ -6,10 +6,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 function NewsPost(e) {
   const {id} = useParams()
-    const {setNewsPost,NewsPost,token,setnotification} = useStateContext()
+    const {setNewsPost,NewsPost,token,setnotification,setconvertBase64} = useStateContext()
     const [image,setImage] = useState(NewsPost ? NewsPost.length>0?NewsPost:"":"")
     const [loading,setLoading] = useState(false)
-    
+ 
     const Navigate = useNavigate()
 
     if(id && e.option=="Post"){
@@ -48,9 +48,10 @@ function NewsPost(e) {
       ev.preventDefault()
       if(e.option=="Post"){
         if(NewsPost.length>0){
-        NewsPost.map((insert,index)=>{
+        NewsPost.map(async(insert,index)=>{
+          const convertBase64 = await setconvertBase64(insert) 
           const formdata = new FormData()
-          formdata.append("NewsPost",insert)
+          formdata.append("image",convertBase64)
           axios.post(`${import.meta.env.VITE_BACK_BASE_URL}/NewsPost`,formdata,{
             headers:{
               "Content-Type":"multipart/form-data",
@@ -61,17 +62,19 @@ function NewsPost(e) {
             console.log(data.res)
             setNewsPost([])
             Navigate("/ListPostNews")
+            setconvertBase64(null)
           })
-          .catch(err=>console.log(err))
+          .catch(err=>console.log(err.message))
         })
       }else{
         setnotification({message:"select an image"})
       }
       }else if(e.option=="Project"){
         if(NewsPost.length>0){
-        NewsPost.map((insert,index)=>{
+        NewsPost.map(async(insert,index)=>{
+          const convertBase64 = await setconvertBase64(insert) 
           const formdata = new FormData()
-          formdata.append("NewsProject",insert)
+          formdata.append("image",convertBase64)
           axios.post(`${import.meta.env.VITE_BACK_BASE_URL}/NewsProject`,formdata,{
             headers:{
               "Content-Type":"multipart/form-data",
@@ -134,6 +137,7 @@ function NewsPost(e) {
       }
     }
     const handeladd = ()=>{
+      console.log(image.size)
       if(image!=""){
       if(id){
         setNewsPost([image])
@@ -158,7 +162,7 @@ function NewsPost(e) {
         <form encType='multipart/form-data'>
             <input type="file" id="image" name='image' onChange={(e)=>setImage(e.target.files[0])} />
         </form>
-        <label htmlFor="image"><div className='select'>Select Image</div></label>
+        <label htmlFor="image"><div className='select'>Select Image (800x400)</div></label>
         <div className='btns'>
         <button className='btnTE add' onClick={handeladd}>{id?"Apply":"Add"}</button>
         

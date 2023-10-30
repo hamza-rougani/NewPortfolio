@@ -61,7 +61,7 @@ const handelSearch = (e)=>{
               search.map((p,index)=>{
                 return(
                 <tr key={index}>
-                <td><div id='imageG'><img src={`${import.meta.env.VITE_API2_BASE_URL}/${p.image}`} alt="" /></div></td>
+                <td><div id='imageG'><img src={`${p.image}`} alt="" /></div></td>
                 <td ><div id='postDes'>{p.post}</div></td>
                 <td>{p.create_at}</td>
                 <td>
