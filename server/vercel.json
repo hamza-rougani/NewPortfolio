@@ -1,31 +1,11 @@
+
 {
-    "routes": [
-      {
-        "src": "/",
-        "dest": "/"
-      },
-      {
-        "src": "/projects",
-        "dest": "/"
-      },
-      {
-        "src": "/news",
-        "dest": "/"
-      }
-      ,
-      {
-        "src": "/skills",
-        "dest": "/"
-      }
-      ,
-      {
-        "src": "/contact",
-        "dest": "/"
-      }
-      ,
-      {
-        "src": "/details",
-        "dest": "/"
-      }
-    ]
+  "rewrites": [
+    { "source": "/", "destination": "/" },
+    { "source": "/projects", "destination": "/" },
+    { "source": "/news", "destination": "/" },
+    { "source": "/skills", "destination": "/" },
+    { "source": "/contact", "destination": "/" },
+    { "source": "/details", "destination": "/" }
+  ]
 }
