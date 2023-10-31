@@ -1,7 +1,11 @@
 {
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
+      "destination": "/"
+    },
+    {
+      "src": "/projects",
       "destination": "/"
     }
   ]
