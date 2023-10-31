@@ -1,11 +1,15 @@
-
 {
-  "rewrites": [
-    { "source": "/", "destination": "/" },
-    { "source": "/projects", "destination": "/" },
-    { "source": "/news", "destination": "/" },
-    { "source": "/skills", "destination": "/" },
-    { "source": "/contact", "destination": "/" },
-    { "source": "/details", "destination": "/" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "./server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "destination": "/"
+    }
   ]
 }
