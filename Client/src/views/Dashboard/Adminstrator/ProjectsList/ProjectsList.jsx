@@ -63,7 +63,7 @@ function ProjectsList() {
               search.map((p,index)=>{
                 return(
                 <tr key={index}>
-                <td><div id='imageG'><img src={`${import.meta.env.VITE_API2_BASE_URL}/${p.Introduct.image}`} alt="" /></div></td>
+                <td><div id='imageG'><img src={`${p.Introduct.image}`} alt="" /></div></td>
                 <td ><div id='postDes'>{p.Introduct.title}</div></td>
                 <td>{p.Introduct.tools}</td>
                 <td>

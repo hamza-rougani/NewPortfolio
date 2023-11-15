@@ -3,7 +3,6 @@ import Dashboard from './Layouts/Dashboard'
 import {Routes , Route} from "react-router-dom"
 import Profile from './views/Dashboard/Profile/Profile'
 import Skills from './views/Dashboard/Skills/Skills'
-import Projects from './views/Dashboard/Projects/Projects'
 import Contact from './views/Dashboard/Contact/Contact'
 import Details from './views/Dashboard/Details/Details'
 import CreateProject from './views/Dashboard/Adminstrator/CreateProject/CreateProject'
@@ -18,15 +17,17 @@ import Login from './views/Dashboard/Adminstrator/Admin/Login'
 import Test from './views/Test'
 import NewsPost from './views/Dashboard/Adminstrator/NewsPost/NewsPost'
 import ListNews from './views/Dashboard/Adminstrator/ListNews/ListNews'
+import Home from './views/Dashboard/Home/Home'
 export default function Sections() {
   return (
     <div>
       <Routes>
       
         <Route path="/" element={<Dashboard/>}>
-         <Route path="/" element={<Profile/>}/>
+         <Route path="/" element={<Home/>}/>
+         <Route path="/profile" element={<Profile/>}/>
          <Route path="/skills" element={<Skills/>}/>
-         <Route path="/projects" element={<Projects/>}/>
+         
          <Route path="/news" element={<News/>}/>
          <Route path="/contact" element={<Contact/>}/>
          <Route path="/details/:id" element={<Details/>}/>

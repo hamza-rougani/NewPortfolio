@@ -1,20 +1,27 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import Container1 from './Container1'
+import Container2 from './Container2'
 function Problem(e) {
   return (
-    <div>
-      {e.p.title?
-      e.p.title.map((o,index)=>{
-        return(
-        <div className='Introduct block'><h4 id='h4p'>{o}</h4>
-        <span id='paragraph'>{e.p.desc[index]}</span>
-       
-           </div>
-           )
-      })
-      
-      :""}
-    </div>
+    <div className='informationP'>
+          
+    {e.p.title?
+    e.p.title.map((o,index)=>{
+      return (
+        <>
+    {
+      index % 2==1?
+      <Container2 title = {o} desc={e.p.desc[index]} index={index} />
+      :
+      <Container1 title = {o} desc={e.p.desc[index]} index={index} />
+    }
+    
+   </>)
+  })
+    :""}
+    
+    
+</div>
   )
 }
 

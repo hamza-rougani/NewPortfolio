@@ -19,18 +19,21 @@ const Logout =()=>{
   return (
     <div className='Menu'>
       <div className='presentation'>
+        <Link id='linkW' to="/profile">
       <div className='logo'>
-        <img src={`${import.meta.env.VITE_API_BASE_URL}/images/profile.png`} alt="" />
-      </div>
+        
+        <img src={`${import.meta.env.VITE_API_BASE_URL}/images/DSC_0011 copie.jpg`} alt="" />
+      </div> </Link>
       <div className='status'><div className='color'><div className='n'>Focusing</div></div> </div>
       <div className='info'>
          <span id='name'>HAMZA ROUGANI</span>
         <span id='desc'>Developer Full Stack</span>
         </div>
+       
       </div>
       <ul id='ul'>
-        <Link id="linkB" to="/"><li id={url=="/"?"clicked":""}><i class='bx bx-user'></i>Profile</li></Link>
-        <Link id="linkB" to="/projects"><li id={url=="/projects" || url.includes("/details")?"clicked":""}><i class='bx bx-objects-vertical-bottom'></i>Projects</li></Link>
+        <Link id="linkB" to="/"><li id={url=="/" || url.includes("/details")?"clicked":""}><i class='bx bx-home'></i>Home</li></Link>
+        <Link id="linkB" to="/profile"><li id={url=="/profile"?"clicked":""}><i class='bx bx-user'></i>Profile</li></Link>
         <Link id="linkB" to="/news"><li id={url=="/news"?"clicked":""}><i class='bx bx-news'></i>Posts</li></Link>
         <Link id="linkB" to="/skills"><li  id={url=="/skills"?"clicked":""}><i class='bx bx-pie-chart-alt-2'></i>Skills</li></Link>
         <Link id="linkB" to="/contact"><li  id={url=="/contact"?"clicked":""}><i class='bx bxs-contact'></i>Contact Me</li></Link>

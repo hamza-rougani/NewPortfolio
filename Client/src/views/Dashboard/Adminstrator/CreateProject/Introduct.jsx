@@ -32,20 +32,24 @@ console.log(info)
           <button className="btn add" onClick={handleConfirme}>Confirme</button>
           </div>
         </div>
-        <div className='Card' >
-      <div className='image'><img src={id ?
+        <div className='languages'>
+    <div className='language'>
+ <div className='logo'>
+   <img src={id ?
        typeof(image)=="string"?
        `${import.meta.env.VITE_API2_BASE_URL}/${info.image}`
        :URL.createObjectURL(image) 
        :image.length!=0 ? 
-       URL.createObjectURL(image):"https://actogmbh.com/files/no-product-image.png"} alt="" /></div>
-      <div className='info'>
-        <div className='title'>{info.title!="" ?info.title:"title"}</div>
-        <div className='desc'>{info.desc!="" ?info.desc:"description"}</div>
-        <div className='tools'>{info.tools!="" ?info.tools:"xxx,xxx,xxx"}</div>
-        <button>show details</button>
-      </div>
-    </div>
+       URL.createObjectURL(image):"https://actogmbh.com/files/no-product-image.png"} alt="" />
+ </div>
+ <div className='text'>
+ <h4>{info.title!="" ?info.title:"title"}</h4>
+ <div className='span'>{info.desc!="" ?info.desc:"description"}</div>
+ <div className='tools'>{info.tools!="" ?info.tools:"xxx,xxx,xxx"}</div>
+ <button>Explore</button>
+ </div>
+ </div>
+</div>
     </div>
       </div>
     </div>

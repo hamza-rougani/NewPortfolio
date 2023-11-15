@@ -13,6 +13,8 @@ const CreateContext = createContext({
     token:null,
     NewsPost:null,
     NewsProject:null,
+    ActiveImage:null,
+    setActiveImage:()=>{},
     setconvertBase64:()=>{},
     setToken:()=>{},
     setintroduct:()=>{},

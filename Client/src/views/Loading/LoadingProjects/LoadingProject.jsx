@@ -4,7 +4,7 @@ function LoadingProject() {
   return (
     <div className='LoadingProject'>
       <div className='loadingPrj'>
-      <div className='Card'>
+      <div className='CardTwo'>
       <div className='image ROO'></div>
       <div className='info'>
         <div className='title ROO'></div>

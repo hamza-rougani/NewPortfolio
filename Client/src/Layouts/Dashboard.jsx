@@ -1,9 +1,19 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Menu from "../views/Dashboard/Menu"
 import { Outlet } from 'react-router-dom'
+import WhoIaM from '../views/notification/WhoIaM'
+import CardOfilmage from '../views/CardOfilmage'
+import { useStateContext } from '../Context/Provider'
+
 function Dashboard() {
+  const [Dis,setDis] = useState(false)
+  const {ActiveImage} = useStateContext()
+  console.log(ActiveImage)
   useEffect(()=>{
     window.addEventListener("click",handelClicked)
+    setTimeout(()=>{
+        setDis(true)
+    },3000)
   },[])
   const handelClicked = (e)=>{
     if(!document.querySelector(".menuBtn").contains(e.target)){
@@ -19,6 +29,8 @@ function Dashboard() {
       <div className='container'>
       <Outlet/>
       </div>
+      {Dis?<WhoIaM/>:""}
+      <CardOfilmage image = {ActiveImage ?ActiveImage:"https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"}/>
     </div>
   )
 }

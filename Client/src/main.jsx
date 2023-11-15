@@ -5,11 +5,11 @@ import { BrowserRouter } from 'react-router-dom'
 import Sections from './Sections'
 import { ContextProvider } from './Context/Provider'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ContextProvider>
     <BrowserRouter>
         <Sections/>
     </BrowserRouter>
     </ContextProvider>
-  </React.StrictMode>,
+  // {/* </React.StrictMode> */}
 )

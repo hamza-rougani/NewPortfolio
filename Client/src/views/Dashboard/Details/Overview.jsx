@@ -1,31 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Container1 from './Container1'
+import Container2 from './Container2'
 function Overview(e) {
-  console.log(e)
+  const [change,setChange] = useState(false)
+
   return (
     <div className='Overview'>
+      <div className='informationP'>
+          
       {e.p.title?
       e.p.title.map((o,index)=>{
-        return(
-        <div className='Introduct block'><h4 id='h4p'>{o}</h4>
-  {e.p.desc[index].split("//").length>=2? 
-        <ul key={index} id='ulPost'>
-        {
-      e.p.desc[index].split("//").map((l,index)=>{
-        return(
-          <li>{l}</li>
-        )
-      })
-    }
-      </ul>
-      :<p id="paragraph">{e.p.desc[index]}</p>
+        return (
+          <>
+      {
+        index % 2==1?
+        <Container2 title = {o} desc={e.p.desc[index]} index={index} />
+        :
+        <Container1 title = {o} desc={e.p.desc[index]} index={index} />
       }
-        
-           </div>
-           )
-      })
       
+     </>)
+    })
       :""}
-
+      
+      
+</div>
     </div>
   )
 }

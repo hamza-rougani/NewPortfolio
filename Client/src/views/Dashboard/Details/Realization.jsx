@@ -1,20 +1,27 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import Container1 from './Container1'
+import Container2 from './Container2'
 function Realization(e) {
   return (
-    <div className='diagrams'>
-      {e.p.title.map((d,index)=>{
-        return(
-          <div className='diagramsc' key={index}>
-            <h4 id='h4p'>{d}</h4>
-            <div className='cont'>
-            <div className='img'><img src={`${e.p.images[index]}`} alt=""/></div>
-            </div>
-            <p id='paragraph'>{e.p.desc[index]}</p>
-          </div>
-        )
-      })}
-    </div>
+    <div className='informationP'>
+          
+    {e.p.title?
+    e.p.title.map((o,index)=>{
+      return (
+        <>
+    {
+      index % 2==1?
+      <Container2 title = {o} desc={e.p.desc[index]} index={index} image={e.p.images[index]} />
+      :
+      <Container1 title = {o} desc={e.p.desc[index]} index={index} image={e.p.images[index]}/>
+    }
+    
+   </>)
+  })
+    :""}
+    
+    
+</div>
   )
 }
 

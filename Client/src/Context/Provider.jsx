@@ -14,6 +14,7 @@ export const ContextProvider = (props)=>{
     const [notification,_setnotification] = useState(null)
     const [NewsPost,_setNewsPost] = useState([])
     const [NewsProject,_setNewsProject] = useState([])
+    const [ActiveImage,_setActiveImage] = useState(null);
     const [token,_setToken] = useState(localStorage.getItem('TOKEN'));
     const setconvertBase64 = (file)=>{
         if(file){
@@ -44,6 +45,9 @@ export const ContextProvider = (props)=>{
     }
     const setintroduct = (value)=>{
         _setintroduct(value)
+    }
+    const setActiveImage = (value)=>{
+        _setActiveImage(value)
     }
     const setoverview = (value)=>{
         _setoverview(value)
@@ -96,6 +100,8 @@ return(
      token,
      NewsPost,
      NewsProject,
+     ActiveImage,
+     setActiveImage,
      setconvertBase64,
      setNewsPost,
      setNewsProject,
