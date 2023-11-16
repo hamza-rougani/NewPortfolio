@@ -37,10 +37,10 @@ function Profile() {
           </div>
           <div className='compu'> 
           <div className='com'>
-            <img src="images/DSC_0011 copie.jpg" alt="" />
+            <img src={`${import.meta.env.VITE_API_BASE_URL}/images/DSC_0011 copie.jpg`} alt="" />
           </div>
           <div className='stand'>
-            <img src="images/ss.png" alt="" />
+            <img src={`${import.meta.env.VITE_API_BASE_URL}/images/ss.png`} alt="" />
           </div>
           </div>
           </div>
@@ -57,16 +57,16 @@ function Profile() {
             <div className='part'>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/sr.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/sr.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="images/DSC_0011 copie.jpg" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/DSC_0011 copie.jpg`} alt="" />
                 </div>
                 
               </div>
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/qui.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/qui.png`} alt="" />
                 </div>
                 <h4>Who i am ?</h4>
                 <span id='spanPPP'>Hello, I'm Hamza Rougani, a passionate and aspiring Full Stack Developer from Morocco. I'm 23 years old and have recently graduated from OFPPT (Office de la Formation Professionnelle et de la Promotion du Travail) as a Full Stack Developer in 2023. I'm excited to embark on a journey that combines my technical skills, creativity, and determination to create innovative solutions.</span>
@@ -76,17 +76,17 @@ function Profile() {
               
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/4366867.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/4366867.png`} alt="" />
                 </div>
                 <h4>What is OFPPT ?</h4>
                 <span id='spanPPP'>The Office of Vocational Training and Employment Promotion, or OFPPT (L'Office de la formation professionnelle et de la promotion du travail), is a prominent institution in Morocco dedicated to providing high-quality vocational education and training. OFPPT plays a pivotal role in empowering individuals with practical skills and knowledge, preparing them for successful careers in a wide range of industries. With a strong commitment to bridging the gap between education and industry needs, OFPPT offers a diverse array of vocational programs tailored to meet the demands of the job market. </span>
               </div>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/2819450.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/2819450.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://www.ofppt.ma/sites/default/files/home/photo-ofppt.png" alt="" /> 
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/photo-ofppt.png`} alt="" /> 
                 </div>
                 
               </div>
@@ -94,16 +94,16 @@ function Profile() {
             <div className='part'>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/5431052.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/5431052.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://bs-uploads.toptal.io/blackfish-uploads/components/seo/content/og_image_file/og_image/786883/74-Full-stack_Developer__2x-75cfeeded2b49fcdc9665e672c055768.png" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/74-Full-stack_Developer__2x-75cfeeded2b49fcdc9665e672c055768.png`} alt="" />
                 </div>
                 
               </div>
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/3645866.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/3645866.png`} alt="" />
                 </div>
                 <h4>What did I benefit from OFPPT?</h4>
                 <span id='spanPPP'>My experience at OFPPT has been instrumental in shaping my career as a full-stack developer. The institution's well-rounded curriculum allowed me to gain proficiency in both front-end and back-end technologies, making me capable of handling all aspects of web development. I acquired skills in programming languages, database management, and various web development frameworks, which have been essential in my day-to-day work.</span>
@@ -113,17 +113,17 @@ function Profile() {
               
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/4696757.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/4696757.png`} alt="" />
                 </div>
                 <h4>What did I study in school ?</h4>
                 <span id='spanPPP'>I studied a diverse array of technologies and methodologies during my time at school, equipping me with a well-rounded skill set as a full-stack developer. My educational journey covered a wide range of programming languages, including React.js, JavaScript, HTML, CSS, Node.js, Laravel, PHP, and Python. I also gained expertise in web development tools such as AJAX and jQuery, as well as proficiency in Python Object-Oriented Programming (OOP) and libraries like Tkinter for GUI development. </span>
               </div>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/6214248.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/6214248.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://neetable.com/img/blog/blog-inner/react-node-js-for-full-stack-web-development/why-combine-react-and-node-js-for-full-stack-web-development.jpg" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/why-combine-react-and-node-js-for-full-stack-web-development.jpg`} alt="" />
                 </div>
                 
               </div>
@@ -131,16 +131,16 @@ function Profile() {
             <div className='part'>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/mysql-database.svg" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/mysql-database.svg`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/kuzt9r42or1fxvlq2-Meta_Generic.png`} alt="" />
                 </div>
                 
               </div>
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/9722699.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/9722699.png`} alt="" />
                 </div>
                 <h4>More ...</h4>
                 <span id='spanPPP'>In addition, my studies included database management with PyMongo for MongoDB and MySQL, as well as an understanding of software modeling with UML. I also delved into agile methodologies, which have provided a strong foundation for project management and collaboration in my development work.</span>
@@ -150,7 +150,7 @@ function Profile() {
               
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/5257117.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/5257117.png`} alt="" />
                 </div>
                 <h4>What are the self-learning resources ?</h4>
                 <span id='spanPPP'>
@@ -160,16 +160,16 @@ Through this self-formation process, I immerse myself in the dynamic realm of we
               </div>
               <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/6952330.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/6952330.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://www.marketing91.com/wp-content/uploads/2019/10/What-is-Self-Learning.jpg" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/What-is-Self-Learning.jpg`} alt="" />
                 </div>
                 
               </div>
             </div>
             <div className='contF'>
-        <h3><div className='logoGene'><img src="images/2912857.png" alt="" /></div>All time favorite resources</h3>
+        <h3><div className='logoGene'><img src={`${import.meta.env.VITE_API_BASE_URL}/images/2912857.png`} alt="" /></div>All time favorite resources</h3>
         <span className='spanRRR'>Some of the resources I use to develop my programming skills as a developer full stack. </span>
         <div className='animes'>
           {resources.map((anime,index)=>{
@@ -185,16 +185,16 @@ Through this self-formation process, I immerse myself in the dynamic realm of we
             <div className='part'>
             <div className='pa'>
                 <div className='logo'>
-                  <img id="pic" src="images/3408506.png" alt="" />
+                  <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/3408506.png`} alt="" />
                 </div>
                 <div className='imagePr'>
-                <img src="https://cdn.hackernoon.com/images/ARCWTrgYpoc531106B2eMedWoT42-n33q353u.png" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/anime.png`} alt="" />
                 </div>
                 
               </div>
               <div className='pa2'>
                 <div className='logo'>
-                  <img src="images/5930147.png" alt="" />
+                  <img src={`${import.meta.env.VITE_API_BASE_URL}/images/5930147.png`} alt="" />
                 </div>
                 <h4>Do I do other things ?</h4>
                 <span id='spanPPP'>Beyond my professional pursuits, I am an avid enthusiast of anime and video games. Exploring the imaginative worlds crafted by talented creators has been a significant source of inspiration for me. Whether it's the intricate storytelling of my favorite anime series or the immersive experiences offered by video games, these interests not only reflect my passion for creativity but also contribute to my continuous growth as a professional. In my spare time, you'll often find me engrossed in a captivating story or navigating virtual landscapes. These pursuits not only serve as sources of joy but also fuel my creativity and drive for innovation in my work. </span>
@@ -218,7 +218,7 @@ Through this self-formation process, I immerse myself in the dynamic realm of we
         </div>
         </div>
         <div className='contF'>
-        <h3><div className='logoGene'><img src="images/3408506.png" alt="" /></div>All time favorite Games</h3>
+        <h3><div className='logoGene'><img src={`${import.meta.env.VITE_API_BASE_URL}/images/3408506.png`} alt="" /></div>All time favorite Games</h3>
         <span className='spanRRR'>When you play electronic games, it gives you a good feeling and curiosity in searching for the tools and programming languages with which these games were made. </span>
         <div className='animes'>
           {games.map((anime,index)=>{

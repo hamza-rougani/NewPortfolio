@@ -21,7 +21,7 @@ function Container1(e) {
     <div className='part'>
     <div className='pa'>
       <div className='logo'>
-        <img id="pic" src="http://localhost:3001/images/crayon.png" alt="" />
+        <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/crayon.png`} alt="" />
       </div>
       <div className='imagePr testtest'>
         {e.image ?
@@ -33,7 +33,7 @@ function Container1(e) {
     </div>
     <div className='pa2'>
       <div className='logo'>
-        <img src={`http://localhost:3001/images/numbers/${Icons[e.index]}`} alt="" />
+        <img src={`${import.meta.env.VITE_API_BASE_URL}/images/numbers/${Icons[e.index]}`} alt="" />
       </div>
       <h4>{e.title}</h4>
   {e.desc.split("//").length>=2? 

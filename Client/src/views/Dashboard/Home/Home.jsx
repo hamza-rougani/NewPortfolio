@@ -135,16 +135,16 @@ function Home() {
       </div>
       <div className='projects'>
         <h3>My simple projects</h3>
-        {Params ?
+        {/* {Params ?
         <div className='res'>
         <b>
         {'Result: '+Params}
         </b>
         <button onClick={()=>Navigate("/projects")}>All</button>
         </div>
-        :""} 
+        :""}  */}
         {/* {loading ? project.length>0 ?<CardsPre project={search}/>:<Noresult res={e.Params}/>:<LoadingProjects/>} */}
-        {loading ? project.length>0 ?<CardsTwo project={search}/>:<Noresult res={e.Params}/>:<LoadingProjects/>}
+        {loading ? search.length>0 ?<CardsTwo project={search}/>:<Noresult res={Params}/>:<LoadingProjects/>}
         {/* <Favo/> */}
         </div>
     </div>

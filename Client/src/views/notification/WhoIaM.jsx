@@ -29,7 +29,7 @@ function WhoIaM() {
     <div className='hamza'>
        <i class='bx bx-x XXXXX'></i>
        <div className='logo'>
-                <img src="images/DSC_0011 copie.jpg" alt="" />
+                <img src={`${import.meta.env.VITE_API_BASE_URL}/images/DSC_0011 copie.jpg`} alt="" />
             </div>
             <div className='name'>HAMZA ROUGANI</div>
             <div className='message'>

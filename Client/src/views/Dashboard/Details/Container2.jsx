@@ -42,7 +42,7 @@ function Container1(e) {
     </div>
     <div className='pa'>
       <div className='logo'>
-        <img id="pic" src="http://localhost:3001/images/crayon.png" alt="" />
+        <img id="pic" src={`${import.meta.env.VITE_API_BASE_URL}/images/crayon.png`} alt="" />
       </div>
       <div className='imagePr testtest'>
       {e.image ?

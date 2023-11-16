@@ -6,7 +6,7 @@ function CardPre(e) {
   
  <div className='language'>
  <div className='logo'>
-   <img src={e.data.image} alt="" />
+   <img src={`${import.meta.env.VITE_API_BASE_URL}/images/skills/${e.data.image}`} alt="" />
  </div>
  <div className='text'>
  <h4>{e.data.title}</h4>

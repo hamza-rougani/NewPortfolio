@@ -1619,10 +1619,15 @@ cursor: pointer;
   height: 100%;
   overflow: hidden;
 }
+.informationP .part .pa2 h4{
+  margin: 0;
+  padding: 0;
+}
 .informationP .part .pa2{
   width: 45%;
-
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .hamza{
   position: fixed;
